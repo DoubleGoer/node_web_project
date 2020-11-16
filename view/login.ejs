@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta charset="utf8">
+    <title> 로그인 </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+    body {
+        /* 해당부분을 통해 이미지를 넣을수도 있습니다 */
+        background: coral;
+        /*background: url(""); <-이미지 불러오는 부분 바꿀꺼면 여기에 추가하기*/
+
+    }
+    #joinbox{
+        position: absolute;
+        top: 0; left: 0;right: 0;bottom: 0;
+        height: 30%;
+        width: 20%;
+        margin: 10% auto;
+        /*이미즈를 넣을 경우를 대비해서 하단에 rgba 값을 통해 메인에 투명한 효과 집어 넣음*/
+        background-color: rgba(255,255,255,0.3);
+        border-radius: 10%;
+        transition : background-color, height, width,transform;
+        transition-duration: 1s;
+    }
+    #joinbox #headtext {
+        display: block;
+        height: 30%;
+        text-align: center;
+    }
+    #joinbox form{
+        width: 80%;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    #joinbox form div div input {
+        max-width: 70%;
+    }
+    #joinbox:hover{
+        background-color: rgba(255,255,255,1);
+        transform: scale(1.5);
+    }
+    #joinlnik{
+        text-align: center;
+    }
+
+    @keyframes logformfadeOut {
+        0%{
+            width:20%;height: 30%;
+            opacity: 1;
+        }
+        100%{
+            width: 0%;height: 0%;
+            opacity: 0;
+        }
+
+    }
+
+</style>
+<body>
+<section id="joinbox">
+    <!--  설명부 텍스트 영역 입니다  -->
+
+    <div id="headtext">
+        <h1 id="webTitle">서비스 이름 </h1>
+        <div>이하 서비스 내용 입력받는 부분</div>
+    </div>
+    <!--  끝 -->
+    <!--   로그인 폼테그 영역 입니다  -->
+    <form class="form-horizontal " action="/action_page.php">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="id">ID  </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="id" placeholder="Enter ID">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password  </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">로그인</button>
+            </div>
+        </div>
+    </form>
+    <!--  끝 -->
+    <!--  회원가입 페이지 유도 -->
+    <div id="joinlnik">
+        아직 회원이 아니 신가요? <a id="join">회원가입 </a>
+    </div>
+    <!--  끝 -->
+</section>
+<script>
+    let joinlink = document.getElementById('join')
+    let logform = document.querySelector('#joinbox')
+    joinlink.onclick = redirectJoin
+    function redirectJoin() {
+        logform.style.animation = 'logformfadeOut 2s both'
+        setTimeout(()=>{window.location.href = '/page/join'},1000)
+    }
+
+
+</script>
+</body>
+</html>
