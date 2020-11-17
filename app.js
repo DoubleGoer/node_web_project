@@ -5,6 +5,7 @@ let port = 3000
 var path = require('path');
 let host = '0.0.0.0'
 let cookieParser = require('cookie-parser')
+let bodyParser = require('body-parser')
 
 let page = require('./Router/page')
 let user = require('./Router/user')
@@ -17,8 +18,7 @@ let https = require('https')
 let server = http.createServer(app).listen(3000,'localhost',()=>{
     console.log("server is on")
 })
-
-
+let mongo = require('./module/mongodb')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
@@ -30,6 +30,7 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', ((req, res) => {
+    mongo.connectCheck();
     res.send("this page")
 }))
 

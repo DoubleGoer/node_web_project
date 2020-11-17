@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf8">
-        <title> 로그인 </title>
+        <title> 회원가입 </title>
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -74,7 +74,7 @@
             transition-duration: 1s;
             transition-delay: 0.5s;
         }
-        
+
         @keyframes onload {
             0%{
                 transform: scale(0.0);
@@ -83,6 +83,7 @@
                 transform: scale(1.0);
             }
         }
+
         @keyframes logformfadeOut {
             0%{
                 width:20%;height: 30%;
@@ -105,41 +106,40 @@
         </div>
         <!--  끝 -->
         <!--   로그인 폼테그 영역 입니다  -->
-        <form class="form-horizontal " action="/action_page.php">
+        <form class="form-horizontal" id="joinform">
             <div class="form-group">
-                <label class="control-label col-sm-2" for="id">아이디  </label>
+                <label class="control-label col-sm-2" for="id" >아이디  </label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="id" name="id" placeholder="Enter ID">
+                    <input type="text" class="form-control" style="display: inline-block;" id="id" name="id" placeholder="Enter ID" maxlength="12" pattern="^([a-z0-9]){6,10}$" required title="소문자 숫자 조합 6자리 이상 10자리 미만 입력해주세요!">
+                    <button id="idcheck" type="submit">아이디 중복 체크</button>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">비밀번호  </label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password" pattern="^([a-zA-Z0-9@#!$]){6,10}" title="영문대소문자 특수문자 @#!$ 사용하여 만들어주세요" required>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">비밀번호 확인  </label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="pwdchek" name="pwd_ck" placeholder="Check password">
+                    <button id="pwdCheckd" type="button"> 비밀번호 체크</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pwd">이름  </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">이메일  </label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="pwd">이메일  </label>
-                <div class="col-sm-10">
-                    <input type="date" class="form-control" id="date" name="date" >
-                </div>
-            </div>
-
-            <div class="form-group">
-
                 <div class="col-sm-offset-2 col-sm-10">
                     <!--   카카오 주소 검색 API를 활용하여 주소부분을 구현하였습니다                 -->
                     <div class="adress">
@@ -149,34 +149,33 @@
                             <button type="button" class=".btn-default" style="height: 5%" onclick="execDaumPostcode()">주소 검색</button>
                             <input type="text" class="form-control"placeholder="도로명 주소" id="roadAddress" vlaue="" name="roadAddress">
                             <input type="text" class="form-control"placeholder="지번 주소" id="jibunAddress" vlaue="" name="jibunAddress">
-                            <input type="text" class="form-control"placeholder="상세 주소" style="display: inline-block;width: 30%" vlaue="" name="detailnAddress">
+                            <input type="text" class="form-control"placeholder="상세 주소" style="display: inline-block;width: 30%" vlaue="" id="detailnAddress" name="detailnAddress">
                             <input type="text" class="form-control"placeholder="상세 주소" style="display: inline-block;width: 30%" vlaue="" id="extraAddress" name="extraAddress">
                         </fieldset>
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="check"> 속성값</label>
-                        <label><input type="checkbox" name="check"> 속성값1</label>
-                        <label><input type="checkbox" name="check"> 속성값2</label>
+                        <label><input type="checkbox" name="check" value="data"> 속성값</label>
+                        <label><input type="checkbox" name="check" value="data2"> 속성값1</label>
+                        <label><input type="checkbox" name="check" value="data3"> 속성값2</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="radioBox">
-                        <label><input type="radio" name="option"> 속성값</label>
-                        <label><input type="radio" name="option"> 속성값1</label>
-                        <label><input type="radio" name="option"> 속성값2</label>
+                        <label><input type="radio" name="option" value="1"> 속성값</label>
+                        <label><input type="radio" name="option" value="2"> 속성값1</label>
+                        <label><input type="radio" name="option" value="3"> 속성값2</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" id="joinbtn" class="btn btn-default"  >회원가입</button>
+                    <button type="submit" id="joinbtn" class="btn btn-default"  >회원가입</button>
                 </div>
             </div>
         </form>
@@ -185,36 +184,159 @@
     </section>
     </body>
     <script>
+        //페이지 로드 옵션들
+        window.onload = function (){
+            joinbox.style.height= '60%'
+            joinbox.style.width= '30%'
+            wrapingdata.style.opacity = "1"
+        }
+
+
         let joinbox = document.querySelector('#joinbox')
         let wrapingdata = document.querySelector('#wrrap')
 
-        window.onload = function (){
-            joinbox.style.height= '60%'
-            joinbox.style.width= '40%'
-            wrapingdata.style.opacity = "1"
+        // 회원가입 정보값 받아오기
+        let id
+        let pwd
+        let email
+        let pwdcheck
+        let pwdflag = 0
+        let checkbox  = [];
+        let radio
+        let address
+        // 회원가입 변수들 끝
 
-        }
-        // function test(){
-        //     joinbox.style.animation = "onload 1s both"
-        //     setTimeout(joinbox.style.animation = '',1000)
-        // }
 
-        $('#joinbtn').click(()=>{
-            $('#joinbtn').attr('disabled','true')
-            $.ajax({
-                type:"post",
-                url:'/user/join',
-                data:{check:"호에에에"},
-                dataType : 'json',
-                success:(text)=>{
-                    console.log(text)},
-                error:(log)=>{
-                    console.error(log)}
-            })
+        //중복 아이디 확인 처리
+        let idflag = false;
+        let change = false;
+        $('#idcheck').click((e)=>{
+            if(idflag){
+                    idflag= false
+                    $('#id').removeAttr('readonly')
+                    $('#idcheck').text('아이디 중복 체크')
+            }else if(!document.getElementById('joinform')[0].checkValidity()){
+
+            }else if(!idflag){
+                e.preventDefault()
+                if ($('#id').val() == null) {
+                    alert("id가 비었습니다!")
+                } else if (!idflag) {
+                    console.log($('#id').val().toString())
+                    console.log($('#id').val())
+                    $.ajax({
+                        type: "post",
+                        url: '/user/idcheck',
+                        data: {data: $('#id').val()},
+                        dataType: 'text',
+                        success: (text) => {
+                            console.log(text)
+                            if(text == '1'){
+
+                                idflag = true;
+                                $('#id').attr('readonly','true')
+                                $('#idcheck').text('변경')
+                                alert("사용해도 되는 아이디입니다.")
+                            }else{
+                                alert("중복되는 아이디가 있습니다 바꿔주십시오")
+                            }
+                            // $('#joinbtn').removeAttr('disabled')
+                            // $('#joinbtn').removeAttr('disabled')
+                        },
+                        error: (log) => {
+                            console.error(log)
+                        }
+                    })
+                }
+            }
+        })
+
+        // 비밀번호 체킹 부분
+        // 두가지값에 혹시모를 공란을 삭제후 비교 한다
+        $('#pwdCheckd').click((e)=>{
+            e.preventDefault()
+            pwd = $.trim($('#pwd').val())
+            pwdcheck = $.trim($('#pwdchek').val())
+            if(pwd == pwdcheck && pwd!=null){
+                pwdflag = 1
+                alert("두개의 비밀번호가 재대로 입력되었습니다")
+                return
+            }else{
+                alert("다시 한번 확인해주세요!")
+                return
+            }
+
         })
 
 
+        // 회원가입 버튼구역
+        // 각 데이터 파싱후 데이터 /user/insert 구역으로 전송 및 처리
+        $('#joinbtn').click((e)=>{
+            // e.preventDefault()
+            console.log(document.getElementById('joinform').checkValidity())
+            console.log(e)
+            if(!document.getElementById('joinform').checkValidity()){
 
+            }else{
+                e.preventDefault()
+                let send = new Object()
+
+                id = $.trim($('#id').val())
+                pwd = $.trim($('#pwd').val())
+                pwdcheck = $.trim($('#pwdchek').val())
+                if(id==null || pwd==null) {
+                    if(id==null){
+                        $('#id').focus()
+                    }
+                    return false
+                }else if(pwd != pwdcheck &&  pwdflag == 1){
+                    alert("비밀번호와 체크가 다릅니다 체크 검사후 다시 시도해주세요!")
+                    return false
+                }else if(idflag == false){
+                    alert("아이디 중복확인을 해주시길 바랍니다!")
+                    return false
+                }
+                send['id'] = $.trim($('#id').val())
+                send['pwd'] = $.trim($('#pwd').val())
+                send['email'] = $.trim($('#email').val())
+                send['name'] = $.trim($('#name').val())
+                send['check'] = []
+                $("input:checkbox[name='check']").each(function (){
+                    if($(this).is(':checked'))send['check'].push($(this).val())
+                })
+                send['option'] = $('input[name="option"]').val()
+                send['address'] = $('#roadAddress').val() +" " +$('#detailnAddress').val()+ " " + $('#extraAddress').val()
+                let sendData = new Array()
+                sendData.push(send)
+                // sendData.push(pwd)
+                // sendData.push(checkbox)
+                // sendData.push(radio)
+                // sendData.push(address)
+                $('#joinbtn').attr('disabled','true')
+                $.ajax({
+                    type:"post",
+                    url:'/user/join',
+                    data: {data: JSON.stringify(sendData)},
+                    dataType : 'json',
+                    success:(text)=>{
+                        // console.log(text)
+                        console.log("들어옴")
+                        wrapingdata.style.display = "none"
+                        joinbox.style.transition_delay = "1s"
+                        joinbox.style.height= '0%'
+                        joinbox.style.width= '0%'
+                        // transition-duration: 1s;
+                        //
+                        // transition-delay: 0.5s;
+                        setTimeout(()=>{window.location.href='/page/home'},2000)
+                    },
+                    error:(log)=>{
+                        console.error(log)}
+                })
+
+            }
+
+        })
 
         function execDaumPostcode() {
             new daum.Postcode({
