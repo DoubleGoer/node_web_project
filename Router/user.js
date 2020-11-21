@@ -1,3 +1,6 @@
+// 유저의 처리 부분인 로그인 / 수정 / 삭제 등을
+// 작업하는 부분으로 생각하고 만들게 되었습니다.
+
 let express = require('express');
 let router = express.Router()
 console.log("user 라우팅 파싱")

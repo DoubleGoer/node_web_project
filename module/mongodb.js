@@ -1,9 +1,15 @@
 let mongoClient = require('mongodb').MongoClient
 let objectId = require('mongodb').ObjectID
+
+// null 값에 대한 처리를 위해 불러온 모듈
+// 최근 자바에서 사용되는 Optional과 유사하다고 생각합니다.
 let assert = require('assert')
+
+
 let url = 'mongodb://192.168.1.11:2727';
 let mongodb = "test"
 let mondb = ""
+
 //Mongo mainDB명
 function connMongo (callback){
     mongoClient.connect(url,(err,db)=>{
@@ -14,10 +20,16 @@ function connMongo (callback){
 
 }
 
+// 변경해도 상관없습니다.
+// 기본적으로
+// 메소드명 : () =>{} 로 만들었지만
+// 더 좋은 방식이 있으면 그 방향으로 따라 가겠습니다.
+// 기본적으로 해당 부분에서는 (필요한 처리 정보값, res) 형태의 구조로 생성하였습니다
 let mongo = {
     connectCheck :async ()=>{
         connMongo();
     },
+
     insertUser : (id,pwd,name,email,address,check,option,res)=>{
         mongoClient.connect(url,(err,db)=>{
             assert.equal(null,err);
@@ -47,6 +59,7 @@ let mongo = {
             })
         })
     },
+
     checkUser:(id,res)=>{
         mongoClient.connect(url,(err,db)=>{
             assert.equal(null,err);
@@ -73,6 +86,7 @@ let mongo = {
             })
         })
     },
+
     loginCheck:(id,pwd,res)=>{
         mongoClient.connect(url,(err,db)=>{
             assert.equal(null,err);
@@ -98,6 +112,8 @@ let mongo = {
             })
         })
     }
+
+
 }
 
 module.exports = mongo;

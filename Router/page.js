@@ -1,5 +1,8 @@
+// view 대한 처리 렌더링을 담당하는 부분입니다.
+
 let express = require('express')
 let router = express.Router()
+
 
     router.get('/login',((req, res) => {
         res.render('login')

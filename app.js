@@ -18,8 +18,11 @@ let https = require('https')
 let server = http.createServer(app).listen(3000,'localhost',()=>{
     console.log("server is on")
 })
+//몽고 DB 연결 테스트를 위해 불러왔습니다.
 let mongo = require('./module/mongodb')
-app.use(express.json())
+
+//MiddleWare 연결부
+app.use(express.json()) //
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
@@ -28,7 +31,8 @@ app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');
 
 
-
+// 초기 테스트용으로 만들어 놓은 장치입니다
+// 별의미 없었고 초기 MongoDB 커네팅을 체크하기 이용을 하였습니다.
 app.get('/', ((req, res) => {
     mongo.connectCheck();
     res.send("this page")
@@ -46,12 +50,14 @@ app.use('/data',express.static('public'))
 app.use('/user',user)
 app.use('/board',board)
 
-
 // 실제 view가 렌더링 되고 처리되는 부분
 app.use('/page', page)
 
-let sockio = require('./module/socket')
 
+
+// 소켓 통신을 할수도 있을것 같아서
+// HTML에서 사용되는 wss(Web Socket Service) 방식으로 구현하였습니다
+let sockio = require('./module/socket')
 sockio(server)
 
 
