@@ -11,7 +11,6 @@ let page = require('./Router/page')
 let user = require('./Router/user')
 let board = require('./Router/board')
 
-
 // http & https
 let http = require('http')
 let https = require('https')
@@ -20,6 +19,9 @@ let server = http.createServer(app).listen(3000,'localhost',()=>{
 })
 //몽고 DB 연결 테스트를 위해 불러왔습니다.
 let mongo = require('./module/mongodb')
+
+//
+
 
 //MiddleWare 연결부
 app.use(express.json()) //
@@ -39,9 +41,6 @@ app.get('/', ((req, res) => {
 }))
 
 
-app.post('/')
-
-
 // 파일 절대경로 관리
 app.use('/data',express.static('public'))
 
@@ -51,8 +50,8 @@ app.use('/user',user)
 app.use('/board',board)
 
 // 실제 view가 렌더링 되고 처리되는 부분
-app.use('/page', page)
-
+// app.use('/page', page)
+let router = require('./Router/page')(app)
 
 
 // 소켓 통신을 할수도 있을것 같아서

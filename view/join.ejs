@@ -12,7 +12,6 @@
         <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     </head>
-
     <style>
         body {
             /* 해당부분을 통해 이미지를 넣을수도 있습니다 */
@@ -26,7 +25,8 @@
             top: 0; left: 0;right: 0;bottom: 0;
             height: 0%;
             width: 0%;
-            margin: 10% auto;
+            margin: 0 auto;
+            margin-top: 40px;
             /*이미즈를 넣을 경우를 대비해서 하단에 rgba 값을 통해 메인에 투명한 효과 집어 넣음*/
             background-color: rgba(255,255,255,0.3);
             border-radius: 10%;
@@ -35,7 +35,7 @@
         }
         #joinbox:hover{
             background-color: rgba(255,255,255,1);
-            transform: scale(1.5);
+            transform: scale(1.1);
         }
 
         #joinbox #headtext {
@@ -65,16 +65,12 @@
             font-style: inherit;
             border-bottom: none;
         }
-
-
-
         #wrrap{
             opacity: 0;
             transition: opacity;
             transition-duration: 1s;
             transition-delay: 0.5s;
         }
-
         @keyframes onload {
             0%{
                 transform: scale(0.0);
@@ -83,7 +79,6 @@
                 transform: scale(1.0);
             }
         }
-
         @keyframes logformfadeOut {
             0%{
                 width:20%;height: 30%;
@@ -93,9 +88,7 @@
                 width: 0%;height: 0%;
                 opacity: 0;
             }
-
         }
-
     </style>
     <body>
     <section id="joinbox">
@@ -186,7 +179,7 @@
     <script>
         //페이지 로드 옵션들
         window.onload = function (){
-            joinbox.style.height= '60%'
+            joinbox.style.height= '80%'
             joinbox.style.width= '30%'
             wrapingdata.style.opacity = "1"
         }
@@ -328,7 +321,7 @@
                         // transition-duration: 1s;
                         //
                         // transition-delay: 0.5s;
-                        setTimeout(()=>{window.location.href='/page/home'},2000)
+                        setTimeout(()=>{window.location.href='/home'},2000)
                     },
                     error:(log)=>{
                         console.error(log)}

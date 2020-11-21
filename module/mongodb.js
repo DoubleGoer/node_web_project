@@ -5,15 +5,18 @@ let objectId = require('mongodb').ObjectID
 // 최근 자바에서 사용되는 Optional과 유사하다고 생각합니다.
 let assert = require('assert')
 
-
-let url = 'mongodb://192.168.1.11:2727';
+let url = 'mongodb://uikanghome.iptime.org:3001';
 let mongodb = "test"
 let mondb = ""
+
 
 //Mongo mainDB명
 function connMongo (callback){
     mongoClient.connect(url,(err,db)=>{
         // assert.equal(null,err);
+        if(err){
+            console.log(err)
+        }
         console.log("Connect Succes to Server")
         db.close()
     })
@@ -32,7 +35,7 @@ let mongo = {
 
     insertUser : (id,pwd,name,email,address,check,option,res)=>{
         mongoClient.connect(url,(err,db)=>{
-            assert.equal(null,err);
+            // assert.equal(null,err);
             // console.log("Connect Succes to Server")
             if(err){
                 db.close()
@@ -62,7 +65,7 @@ let mongo = {
 
     checkUser:(id,res)=>{
         mongoClient.connect(url,(err,db)=>{
-            assert.equal(null,err);
+            // assert.equal(null,err);
             // console.log("Connect Succes to Server")
             if(err){
                 res.send(err)
