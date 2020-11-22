@@ -44,6 +44,7 @@ app.get('/', ((req, res) => {
     mongo.connectCheck();
     mariadb.getConn();
     res.send("this page")
+
 }))
 
 
