@@ -108,8 +108,10 @@ let mongo = {
                     res.send("database error")
                 }
                 if(result!=1) {
+                    db.close()
                     res.send('0')
                 }else{
+                    db.close()
                     res.send("1")
                 }
             })
