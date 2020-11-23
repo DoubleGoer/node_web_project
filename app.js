@@ -19,15 +19,26 @@ let https = require('https')
 let server = http.createServer(app).listen(3000,'localhost',()=>{
     console.log("server is on")
 })
+//세션 모듈 설정
+var session = require('express-session');
+app.use(session({
+    secret: '@#@$MYSIGN#@$#$',
+    resave: false,
+    saveUninitialized: true
+}));
+
+
+
 //몽고 DB
 //mariadb 10.13 version
 //연결 테스트를 위해 불러왔습니다.
 let mongo = require('./module/mongodb')
 let mariadb = require('./module/mariadb')
-//
+
 
 
 //MiddleWare 연결부
+
 app.use(express.json()) //
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
@@ -41,9 +52,19 @@ app.set('view engine', 'ejs');
 // 별의미 없었고 초기 MongoDB 커네팅을 체크하기 이용을 하였습니다.
 // 2020.11.22 mysql 테스트용 데이터 생성
 app.get('/', ((req, res) => {
+    res.setHeader("Content-type","text/html;charset=utf8")
+    // let sess = req.session
+    // if(sess.userId != null){
+    //     res.send(`로그인 정보 확인 ${sess.userId} / ${sess.userName}`)
+    //
+    // }else{
+    //     res.send("this page")
+    // }
     mongo.connectCheck();
     mariadb.getConn();
-    res.send("this page")
+    res.redirect('/home')
+
+
 }))
 
 

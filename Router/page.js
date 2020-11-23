@@ -9,7 +9,9 @@ module.exports = function (app) {
     }))
 
     app.get('/home',((req, res) => {
-        res.render('home')
+        let sess = req.session
+
+        res.render('home',{logdata : sess})
     }))
 
     // router.get('/chat',((req, res) => {

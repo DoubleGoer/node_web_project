@@ -20,6 +20,7 @@ let mysql = {
             console.log("릴리즈 성공")
             console.log("----------------------")
         })
+
     }
 }
 module.exports = mysql

@@ -26,13 +26,19 @@ router.post('/idcheck',((req, res) => {
 
 router.post('/login',((req, res) => {
     console.log(req.body.data)
+    let sess = req.session
     let userdata = JSON.parse(req.body.data)
-    mongo.loginCheck(userdata[0].id,userdata[0].pwd,res)
+    mongo.loginCheck(userdata[0].id,userdata[0].pwd,res,sess)
 }))
 
 router.delete('/delete',((req, res) => {
 
 
 }))
+
+router.get('/logout',(((req, res) => {
+    req.session.destroy()
+    res.redirect('/home')
+})))
 
 module.exports = router
