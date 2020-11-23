@@ -29,6 +29,7 @@ let sockIO = (server) => {
                 console.log("데이터가 정상적인 형식으로 들어오지 않았습니다.")
             }
 
+
             let sendMessage = new ArrayBuffer()
             // 웹브라우저에서 클라이언트 소켓을 톻에 들어오는 정보값중
             // type을 분석하여 대처하고 해당하는 작업을 처리합니다.
